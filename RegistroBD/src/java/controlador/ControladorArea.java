@@ -6,6 +6,7 @@ package controlador;
 
 import ConexionBD.AreaDAO;
 import java.io.IOException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -46,13 +47,31 @@ public class ControladorArea extends HttpServlet{
         //Se realiza la busqueda de las areas y ubicaciones que pertenece a Sede
         if(miAreaDao.seleccionarArea(idCOMPLEJO)){
             request.setAttribute("listaArea", miAreaDao.getListaArea());
-            System.out.println("Tamagno"+miAreaDao.getListaArea().size());
+            request.setAttribute("IDCOMPLEJO", idCOMPLEJO);
+            System.out.println("_ID_:"+idCOMPLEJO);
+            
+            //3->Establecer el puente/conexion para el paso de los recursos
+            RequestDispatcher miPuente = request.getRequestDispatcher("/vistaArea/vistaArea.jsp");     
+            //4->Enviar/Reenviar ese request a la pagina jsp
+            miPuente.forward(request, response);
         }
         
                 
     }
+    
     protected void filtrarArea(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
         
+        if(miAreaDao.seleccionarFiltro(request.getParameter("area_nombre"), request.getParameter("area_ubicacion"))){
+            //2->Agregar(atributo) al request
+            request.setAttribute("listaAreaFiltro", miAreaDao.getmiListaAreaFiltro());
+            /*miAreaDao.seleccionarArea(idComplejo);
+            request.setAttribute("listaSedes", miSedeDao.getListaSede()); */
+            
+            //3->Establecer el puente/conexion para el paso de los recursos
+            RequestDispatcher miPuente = request.getRequestDispatcher("/vistaArea/vistaAreaFiltrar.jsp");     
+            //4->Enviar/Reenviar ese request a la pagina jsp
+            miPuente.forward(request, response);
+        } 
     }  
 }

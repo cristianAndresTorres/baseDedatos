@@ -21,6 +21,7 @@ import modelo.Area;
 public class AreaDAO extends ConexionOracle{
     private static AreaDAO miAreaDAO;
     private List<Area> miListaArea = new ArrayList<>();
+    private List<Area> miListaAreaFiltro = new ArrayList<>();
     private Area area;
     /*
      * Constructor de la clase
@@ -57,12 +58,51 @@ public class AreaDAO extends ConexionOracle{
             }   
         return  estado;
     }
+    //--------------------------------------------------------------------------
+    //Consulta lon nombres y ubicaciones de las areas a partir de un filtro
+    public boolean seleccionarFiltro(String nombre, String direccion){
+            miListaAreaFiltro.removeAll(miListaAreaFiltro);
+            this.estado = false;
+            try {
+            miConexion = this.realizarConexionBD();
+            
+            String sql = "Select IDAREA, NOMAREA, UBICACION, IDCOMPLEJO from Area where NOMAREA like '"+nombre+"%' and UBICACION like '"+direccion+"%'";
+            
+            consultaRegristro = miConexion.prepareStatement(sql);
+            
+            /*consultaRegristro.setString(1, "C");
+            consultaRegristro.setString(2, "C");*/
+            
+            r = consultaRegristro.executeQuery();
+                
+                System.out.println("________AaAa_");
+            while(r.next()){
+                area = new Area();
+                area.setIDAREA(r.getNString(1));
+                area.setNOMAREA(r.getNString(2));
+                area.setUBICACION(r.getNString(3));
+                area.setIDCOMPLEJO(r.getNString(4));
+                miListaAreaFiltro.add(area);
+            }
+            estado =true;
+            System.err.println("seleccionarFiltro_2");
+            r.close();
+            miConexion.close();
+            } catch (Exception e) {
+                System.err.println("Error areaDAO-seleccionarFiltro");
+            }   
+        return  estado;
+    }
+    
+    
     
     public List<Area> getListaArea(){
         return miListaArea;
     }
     
-    
+    public List<Area> getmiListaAreaFiltro(){
+        return miListaAreaFiltro;
+    }
     
     //--------------------------------------------------------------------------
     public static AreaDAO getAreaDAO(){
