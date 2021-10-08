@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+
+<html lang="es">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Vista Registro</title>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimun-scale=1.0">
+    </head>
+    <link rel="stylesheet" href="css/estilos_1.css">
+    <body>
+        <div class="contenedor">
+            <!--<form action="controladorRegistro" class="form" method="post">-->
+             <form action="ControladorSede" class="form" method="post">
+                <input type="hidden" name="instruccion" value="registro_p1">
+                <div class="form-header">
+                    <h1 class="form-tittle">R <span>esgistro usuario</span></h1>
+                </div> 
+                
+                <label for="nombre" class="form-label">Nombres:</label>
+                <input type="text" id="nombre" class="form-input" placeholder="Digite su nombre" name="nombre">
+                
+                <label for="apellido" class="form-label">Apellido:</label>
+                <input type="text" id="apellido" class="form-input" placeholder="Digite su apellido" name="apellido">
+                
+                <label for="fecha" class="form-label">Fecha:</label>
+                <input type="text" id="fecha" class="form-input" placeholder="Digite su fecha 'dd/mm/aaaa'" name="fecha">
+                
+                <label for="correo" class="form-label">Correo electrónico:</label>
+                <input type="text" id="correo" class="form-input" placeholder="Digite su correo electrónico" name="correo">
+                
+                <input type="submit" class="btn-submit" value="Siguiente">
+            </form>
+            
+        </div>
+         
+    </body>
+</html>

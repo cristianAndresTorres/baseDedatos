@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    CREATE TABLE Usuario(
+    nombre VARCHAR2(50) NOT NULL,
+    apellido VARCHAR2(50) NOT NULL,
+    correo VARCHAR2(50) NOT NULL,  
+    fecha_nacimiento date NOT NULL,
+    contrasegna VARCHAR2(50),
+    constraint usuarios_pk primary key (correo)
+    );
+    
+    drop table Usuario ;
+
+    INSERT INTO Usuario(nombre,apellido, correo,fecha_nacimiento) VALUES ('Cristian', 'Sanchez','cra@gmail.com',to_date('30/01/2011', 'dd/mm/yyyy'));
+    
+    INSERT INTO Usuario VALUES ('Cristian', 'Sanchez','cra@gmail.com','30/01/2011', '1234');
+
+</html>
