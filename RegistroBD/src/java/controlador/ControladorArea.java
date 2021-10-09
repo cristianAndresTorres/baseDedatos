@@ -51,7 +51,7 @@ public class ControladorArea extends HttpServlet{
             System.out.println("_ID_:"+idCOMPLEJO);
             
             //3->Establecer el puente/conexion para el paso de los recursos
-            RequestDispatcher miPuente = request.getRequestDispatcher("/vistaArea/vistaArea.jsp");     
+            RequestDispatcher miPuente = request.getRequestDispatcher("/eventoDeportivo/vistaArea/vistaArea.jsp");     
             //4->Enviar/Reenviar ese request a la pagina jsp
             miPuente.forward(request, response);
         }
@@ -79,7 +79,7 @@ public class ControladorArea extends HttpServlet{
             request.setAttribute("listaSedes", miSedeDao.getListaSede()); */
             
             //3->Establecer el puente/conexion para el paso de los recursos
-            RequestDispatcher miPuente = request.getRequestDispatcher("/vistaArea/vistaAreaFiltrar.jsp");     
+            RequestDispatcher miPuente = request.getRequestDispatcher("/eventoDeportivo/vistaArea/vistaAreaFiltrar.jsp");     
             //4->Enviar/Reenviar ese request a la pagina jsp
             miPuente.forward(request, response);
         }

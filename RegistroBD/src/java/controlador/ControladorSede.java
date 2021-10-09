@@ -47,7 +47,7 @@ public class ControladorSede extends HttpServlet{
             //2->Agregar(atributo) Lista de nombres y ubicaciones al request
             request.setAttribute("listaSedes", miSedeDao.getListaSede()); 
             //3->Establecer el puente/conexion para el paso de los recursos
-            RequestDispatcher miPuente = request.getRequestDispatcher("/vistaSede/vistaSede.jsp");     
+            RequestDispatcher miPuente = request.getRequestDispatcher("/eventoDeportivo/vistaSede/vistaSede.jsp");     
             //4->Enviar/Reenviar ese request a la pagina jsp
             miPuente.forward(request, response);
         } 
@@ -63,7 +63,7 @@ public class ControladorSede extends HttpServlet{
             request.setAttribute("listaSedes", miSedeDao.getListaSede()); 
             
             //3->Establecer el puente/conexion para el paso de los recursos
-            RequestDispatcher miPuente = request.getRequestDispatcher("/vistaSede/vistaSedeFiltrar.jsp");     
+            RequestDispatcher miPuente = request.getRequestDispatcher("/eventoDeportivo/vistaSede/vistaSedeFiltrar.jsp");     
             //4->Enviar/Reenviar ese request a la pagina jsp
             miPuente.forward(request, response);
         } 
