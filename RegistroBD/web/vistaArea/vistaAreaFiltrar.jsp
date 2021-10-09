@@ -15,27 +15,24 @@
     </head>
    <%List<Area> listaArea_1 = (List<Area>)request.getAttribute("listaAreaFiltro");%>
     <body>
-        <form action="ControladorArea" method="post">
-            <input type="hidden" name="instruccionArea" value="Filtrar">
+        <form action="ControladorDeporte" method="post">
+            <input type="hidden" name="intruccionProducto" value="Filtrar">
             <input type="hidden" name="<%=request.getAttribute("IDCOMPLEJO")%>" value="id">
             <h1><%=request.getAttribute("IDCOMPLEJO")%></h1>
             <table>          
                 <tr>
-                    <th class="">Id Area</th>
                     <th class="">Nombre Area</th>
                     <th class="">Ubicacion</th>
-                    <th class="">Id Complejo</th>
                     <th class="">Modulo</th>
               <%for(int j=0; j<listaArea_1.size();j++){%>            
                     <tr>
-                        <td class="filas"><%=listaArea_1.get(j).getIDAREA()%></td>
-                        <td class="filas"><%=listaArea_1.get(j).getNOMAREA()%></td>
-                        <td class="filas"><%=listaArea_1.get(j).getUBICACION()%></td>
-                        <td class="filas"><%=listaArea_1.get(j).getIDCOMPLEJO() %></td>
-                        <td class="filas"><input type="submit" name="idCOMPLEJO" value="Deporte <%=listaArea_1.get(j).getIDAREA()%>"></td>
+                        <td ><%=listaArea_1.get(j).getNOMAREA()%></td>
+                        <td ><%=listaArea_1.get(j).getUBICACION()%></td>
+                        <td class="filas"><input type="submit" name="BTN_1" value="<%="Deportes seccion->"+listaArea_1.get(j).getIDAREA()+"-"+listaArea_1.get(j).getIDCOMPLEJO()%>"></td>
                     </tr> 
                 <%}%>
             </table>
         </form
+        <jsp:include page="vistaArea.jsp"></jsp:include></br>
     </body>
 </html>

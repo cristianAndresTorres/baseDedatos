@@ -20,7 +20,7 @@
         
         <form action="ControladorArea" method="post">
             <input type="hidden" name="instruccionArea" value="filtrar">
-            <input type="hidden" name="<%=request.getAttribute("IDCOMPLEJO")%>" value="idComplejo_1">
+            <input type="hidden" name="idComplejo_1" value="<%=request.getAttribute("IDCOMPLEJO")%>">
             <h1><%=request.getAttribute("IDCOMPLEJO")%></h1>
             <h1>Areas</h1>
                 <select name="area_nombre">

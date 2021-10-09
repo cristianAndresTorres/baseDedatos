@@ -4,7 +4,7 @@
  */
 package controlador;
 
-import ConexionBD.AreaDAO;
+import ConexionBD.AreaSQL;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ControladorArea", urlPatterns = {"/ControladorArea"})
 public class ControladorArea extends HttpServlet{
-    private AreaDAO miAreaDao = AreaDAO.getAreaDAO();
+    private AreaSQL miAreaDao = AreaSQL.getAreaDAO();
      //Entrada de datos por metodo doPost
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -59,12 +59,22 @@ public class ControladorArea extends HttpServlet{
                 
     }
     
+   //Permite obtener la lista con todos los atributos de las Areas a partir de un filtro
     protected void filtrarArea(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
+        System.out.println("FiltrarArea:"+request.getParameter("idComplejo_1"));
+        String idComplejo_1 = request.getParameter("idComplejo_1");
         
-        if(miAreaDao.seleccionarFiltro(request.getParameter("area_nombre"), request.getParameter("area_ubicacion"))){
+        //Datos necesarios para la vista : VistaAreaFiltrar
+        if(miAreaDao.seleccionarFiltro(request.getParameter("area_nombre"), request.getParameter("area_ubicacion"), 
+                idComplejo_1)){
             //2->Agregar(atributo) al request
             request.setAttribute("listaAreaFiltro", miAreaDao.getmiListaAreaFiltro());
+            
+            //Datos necesarios para la vista : VistaArea
+            miAreaDao.seleccionarArea(idComplejo_1);
+            request.setAttribute("listaArea", miAreaDao.getListaArea());
+            request.setAttribute("IDCOMPLEJO", idComplejo_1);
             /*miAreaDao.seleccionarArea(idComplejo);
             request.setAttribute("listaSedes", miSedeDao.getListaSede()); */
             
@@ -72,6 +82,6 @@ public class ControladorArea extends HttpServlet{
             RequestDispatcher miPuente = request.getRequestDispatcher("/vistaArea/vistaAreaFiltrar.jsp");     
             //4->Enviar/Reenviar ese request a la pagina jsp
             miPuente.forward(request, response);
-        } 
-    }  
+        }
+    } 
 }

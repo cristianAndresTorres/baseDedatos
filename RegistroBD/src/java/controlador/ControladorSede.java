@@ -5,7 +5,7 @@
 package controlador;
 
 import conexiones.ConsultaUsuarioSQL;
-import conexiones.SedeDAO;
+import conexiones.SedeSQL;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -23,7 +23,7 @@ import modelo.Sede;
 @WebServlet(name = "ControladorSede", urlPatterns = {"/ControladorSede"})
 public class ControladorSede extends HttpServlet{
     //Atributos
-    private SedeDAO miSedeDao = SedeDAO.getSedeDAO();
+    private SedeSQL miSedeDao = SedeSQL.getSedeDAO();
 
 @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
